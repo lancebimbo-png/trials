@@ -11,14 +11,11 @@ public class TrigonometryLab {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        // PROBLEM 1: Trigonometric Calculator
  
         System.out.println("Trigonometric Calculator");
         System.out.print("Enter an angle in degrees: ");
         double angleDeg = input.nextDouble();
 
-        // convert degrees to radians (because Math.sin/cos/tan only work with radians)
-        // reference: https://www.w3schools.com/java/java_math.asp
         double angleRad = toRadians(angleDeg);
 
         System.out.println("Choose a function: ");
@@ -51,18 +48,10 @@ public class TrigonometryLab {
             System.out.println("Invalid choice.");
         }
 
-        // Critical Thinking (Problem 1):
-        // - Why convert to radians? Because Math trig functions use radians not degrees.
-        // - Tangent undefined at 90 and 270 because cos=0, and tan = sin/cos (division by zero).
-      
-        // PROBLEM 2: Angle Quadrant Detector
-
         System.out.println("Problem 2: Angle Quadrant Detector");
         System.out.print("Enter an angle in degrees: ");
         double angle = input.nextDouble();
 
-        // normalize angle between 0 and 360 using modulus
-        // reference: https://www.w3schools.com/java/ref_keyword_mod.asp
         angle = angle % 360;
         if (angle < 0) {
             angle += 360;
@@ -82,12 +71,6 @@ public class TrigonometryLab {
             System.out.println("Quadrant IV: sin -, cos +, tan -");
         }
 
-        // Critical Thinking (Problem 2):
-        // - Normalize so angle is always between 0-360.
-        // - Signs change based on unit circle (only sin positive in Quadrant II, etc.)
-        // - Special angles (0, 90, 180, 270) lie on axes.
-
-        // PROBLEM 3: Right Triangle Solver
 
         System.out.println("Problem 3: Right Triangle Solver");
         System.out.println("What do you know?");
@@ -128,12 +111,6 @@ public class TrigonometryLab {
         double area = (a * b) / 2;
         System.out.println("Area = " + area);
 
-        // Critical Thinking (Problem 3):
-        // - Angles must be <90 (since only one right angle).
-        // - Different inputs lead to different trig calculations.
-        // - Wrong inputs mean invalid triangle.
-
-        // PROBLEM 4: Trigonometric Identity Verifier
 
         System.out.println("Problem 4: Identity Verifier");
         System.out.print("Enter an angle in degrees: ");
@@ -151,12 +128,6 @@ public class TrigonometryLab {
         double right3 = 2 * sin(angRad) * cos(angRad);
         System.out.println("sin(2θ) = " + left3 + " and 2sinθcosθ = " + right3);
 
-        // Critical Thinking (Problem 4):
-        // - Floating point is not exact, so we use tolerance (difference small).
-        // - 1 + tan^2 = sec^2 might fail near 90° because tan gets huge.
-
-        // PROBLEM 5: Wave Properties Analyzer
-
         System.out.println("Problem 5: Wave Analyzer");
         System.out.print("Enter amplitude: ");
         double amp = input.nextDouble();
@@ -167,10 +138,8 @@ public class TrigonometryLab {
         System.out.print("Enter time: ");
         double t = input.nextDouble();
 
-        // convert phase to radians
         double phaseRad = toRadians(phase);
-
-        // formula: y(t) = A * sin(2πft + phase)
+        
         double value = amp * sin(2 * PI * freq * t + phaseRad);
         System.out.println("Instantaneous value = " + value);
 
@@ -184,19 +153,14 @@ public class TrigonometryLab {
             System.out.println("At some other point of the wave");
         }
 
-        // next peak time: when sine = 1
         double nextPeakTime = (PI / 2 - phaseRad) / (2 * PI * freq);
         if (nextPeakTime < t) {
             nextPeakTime += 1.0 / freq;
         }
         System.out.println("Next peak at time = " + nextPeakTime);
 
-        // Critical Thinking (Problem 5):
-        // - Peak/trough found when value equals amplitude or -amplitude.
-        // - Next peak time depends on frequency and phase.
-        // - For non-sinusoidal waves, formula would change.
-
         input.close();
     }
 }
+
 
