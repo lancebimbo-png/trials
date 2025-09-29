@@ -25,7 +25,7 @@ public class TrigonometryLab {
         System.out.println("4. All three");
         int choice = input.nextInt();
 
-        if (choice == 1) { // if user chose sine
+        if (choice == 1) {
             System.out.println("sin(" + angleDeg + ") = " + sin(angleRad));
         } else if (choice == 2) { // cosine
             System.out.println("cos(" + angleDeg + ") = " + cos(angleRad));
@@ -48,10 +48,22 @@ public class TrigonometryLab {
             System.out.println("Invalid choice.");
         }
 
+        
+        // 1. Why do we need to convert angles from degrees to radians?
+        // - Java's Math function (like Math.sin()) only accept radians as input because that's the standard unit used in mathematical calculation, especially calculus. we convert to use the built in functions properly
+        // 2. What makes tangent undefined?
+        // - Tangent is sin (Θ)/cos (Θ). it becomes undefined whenever the cosine (cos (Θ)) is zero, which occurs at 90°, 270°, etc. division by zero is mathematically incorrect.
+        // 3. How to add reciprocal functions?
+        // - Calculate the standard fuctions (sin,cos,tan) first, and then find the reciprocals using division : csc(Θ) = 1/sin(Θ), sec(Θ) = 1/cos (Θ), and cot (Θ) = 1/tan(Θ). also check for new division by zero errors.
+        
+
+
+
         System.out.println("Problem 2: Angle Quadrant Detector");
         System.out.print("Enter an angle in degrees: ");
         double angle = input.nextDouble();
 
+        
         angle = angle % 360;
         if (angle < 0) {
             angle += 360;
@@ -71,16 +83,28 @@ public class TrigonometryLab {
             System.out.println("Quadrant IV: sin -, cos +, tan -");
         }
 
+        
+
+        // 1. Why is it important to normalize angles before determining their quadrant?
+        // - Normalizing angles (to 0° - 360°) makes it easier to determine which quadrant the angle falls into.
+        // 2.How does the sign of trigonometric functions change across different quadrants?
+        // - in quadrant 1, all are positive, in quadrant 2 : sin positive, in quadrant 3 : tan positive, in quadrant 4 : cos positive
+        // 3. What special considerations are needed for angles exactly on the axes?
+        // - angles like 0°, 90°, 180°, and 270° need special handling, as some triogonometric values become undefined.
+
+        
 
         System.out.println("Problem 3: Right Triangle Solver");
         System.out.println("What do you know?");
         System.out.println("1. Two sides");
         System.out.println("2. One side and one angle");
         int know = input.nextInt();
+        
 
         double a = 0, b = 0, c = 0; // sides
         double A = 0, B = 0, C = 90; // angles (C = right angle)
 
+        
         if (know == 1) {
             System.out.print("Enter side a: ");
             a = input.nextDouble();
@@ -112,6 +136,14 @@ public class TrigonometryLab {
         System.out.println("Area = " + area);
 
 
+        // 1. Why must we validate that angles in a right triangle are less than 90°?
+        // - the other two angles must be less than 90° for a valid right triangle.
+        // 2. How does your program handle the different cases of known values?
+        // - if sides are known, calculate angles with trig fuctions. if an angle and side are known, use inverse functions.
+        // 3. the program will detect invalid triangles and give an error message.  
+        
+
+
         System.out.println("Problem 4: Identity Verifier");
         System.out.print("Enter an angle in degrees: ");
         double ang = input.nextDouble();
@@ -127,6 +159,15 @@ public class TrigonometryLab {
         double left3 = sin(2 * angRad);
         double right3 = 2 * sin(angRad) * cos(angRad);
         System.out.println("sin(2θ) = " + left3 + " and 2sinθcosθ = " + right3);
+
+
+        // 1. Why do we need a tolerance when comparing floating-point values?
+        // - computers cant always represent numbers exactly, so we use a small tolerance to compare values correctly.
+        // 2. Which identity might be most susceptible to floating-point precision issues and why?
+        // - sin(20°) = 2sin(0°)cos(°) can be more prone to errors due to floating point precision issues.
+        // 3. How could you extend this program to verify more complex identities?
+        // - add more checks for each identity and compare both sides within a tolerance.
+        
 
         System.out.println("Problem 5: Wave Analyzer");
         System.out.print("Enter amplitude: ");
@@ -162,5 +203,6 @@ public class TrigonometryLab {
         input.close();
     }
 }
+
 
 
