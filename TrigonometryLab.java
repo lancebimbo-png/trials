@@ -50,11 +50,15 @@ public class TrigonometryLab {
 
         
         // 1. Why do we need to convert angles from degrees to radians?
-        // - Java's Math function (like Math.sin()) only accept radians as input because that's the standard unit used in mathematical calculation, especially calculus. we convert to use the built in functions properly
+        // - I convert angles from degrees to radians because Java’s Math functions work in radians. If I don’t convert them, I’ll get wrong results since the formulas depend on radians.
         // 2. What makes tangent undefined?
-        // - Tangent is sin (Θ)/cos (Θ). it becomes undefined whenever the cosine (cos (Θ)) is zero, which occurs at 90°, 270°, etc. division by zero is mathematically incorrect.
+        // - Tangent becomes undefined when cosine equals zero, like at 90° and 270°. At those points, dividing by zero makes the value undefined.
         // 3. How to add reciprocal functions?
-        // - Calculate the standard fuctions (sin,cos,tan) first, and then find the reciprocals using division : csc(Θ) = 1/sin(Θ), sec(Θ) = 1/cos (Θ), and cot (Θ) = 1/tan(Θ). also check for new division by zero errors.
+        // - I can add extra formulas for reciprocal functions:
+            //cosecant = 1 / sin(θ)
+            //secant = 1 / cos(θ)
+            //cotangent = 1 / tan(θ)
+            //Before dividing, I’ll check that the denominator isn’t zero to avoid errors.
         
 
 
@@ -86,12 +90,15 @@ public class TrigonometryLab {
         
 
         // 1. Why is it important to normalize angles before determining their quadrant?
-        // - Normalizing angles (to 0° - 360°) makes it easier to determine which quadrant the angle falls into.
+        // - I normalize angles to keep them between 0° and 360°. This helps me find the correct quadrant because angles can repeat or wrap around the circle.
         // 2.How does the sign of trigonometric functions change across different quadrants?
-        // - in quadrant 1, all are positive, in quadrant 2 : sin positive, in quadrant 3 : tan positive, in quadrant 4 : cos positive
+        // - I learned that each quadrant changes which trig functions are positive:
+            //Quadrant I: all are positive
+        1   //Quadrant II: only sine is positive
+            //Quadrant III: only tangent is positive
+            //Quadrant IV: only cosine is positive
         // 3. What special considerations are needed for angles exactly on the axes?
-        // - angles like 0°, 90°, 180°, and 270° need special handling, as some triogonometric values become undefined.
-
+        // - When the angle is 0°, 90°, 180°, or 270°, I treat them as special cases. They don’t belong to any quadrant, and some trig values become zero or undefined, so I handle them separately.
         
 
         System.out.println("Problem 3: Right Triangle Solver");
@@ -137,10 +144,11 @@ public class TrigonometryLab {
 
 
         // 1. Why must we validate that angles in a right triangle are less than 90°?
-        // - the other two angles must be less than 90° for a valid right triangle.
+        // - I make sure that the other angles are less than 90° because a right triangle can only have one 90° angle. If another angle is 90° or more, it’s not a right triangle anymore.
         // 2. How does your program handle the different cases of known values?
-        // - if sides are known, calculate angles with trig fuctions. if an angle and side are known, use inverse functions.
-        // 3. the program will detect invalid triangles and give an error message.  
+        // - I let the user choose what they know—two sides or one side and one angle. Then I use the right formula, like sine, cosine, or tangent, to find the missing values.
+        // 3. What would happen if a user entered values that don't form a valid right triangle?
+        // - If someone enters invalid values, the program shows impossible results or math errors. I handle that by checking if the values follow the Pythagorean rule before solving.
         
 
 
@@ -162,11 +170,11 @@ public class TrigonometryLab {
 
 
         // 1. Why do we need a tolerance when comparing floating-point values?
-        // - computers cant always represent numbers exactly, so we use a small tolerance to compare values correctly.
+        // - I use a small tolerance because computers can’t store perfect decimal numbers. Tiny rounding errors happen, so I compare values within a small range, like ±0.0001.
         // 2. Which identity might be most susceptible to floating-point precision issues and why?
-        // - sin(20°) = 2sin(0°)cos(°) can be more prone to errors due to floating point precision issues.
+        // - I noticed that the identity 1 + tan²θ = sec²θ has more precision problems. When the angle is near 90°, tangent and secant get very large, which increases rounding errors.
         // 3. How could you extend this program to verify more complex identities?
-        // - add more checks for each identity and compare both sides within a tolerance.
+        // -I can add more formulas, like double-angle or reciprocal identities. I’ll compute both sides and check if they’re equal within the same tolerance.
         
 
         System.out.println("Problem 5: Wave Analyzer");
@@ -201,8 +209,17 @@ public class TrigonometryLab {
         System.out.println("Next peak at time = " + nextPeakTime);
 
         input.close();
+
+
+        // 1. How did you determine if the wave is at a peak or trough?
+        // - I check the sine value. If it equals 1, the wave is at a peak; if it equals -1, the wave is at a trough.
+        // 2. What mathematical approach did you use to find the next peak?
+        // - I use the period formula T = 1 / frequency. Then I add one period to the current time to find the next peak position.
+        // 3. How would you modify this program to handle non-sinusoidal waves?
+        // - I can change the sine equation to another wave type, like square or triangle waves. I’ll also update how I check for peaks and troughs to match that wave’s shape.
     }
 }
+
 
 
 
