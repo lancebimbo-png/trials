@@ -94,7 +94,7 @@ public class TrigonometryLab {
         // 2.How does the sign of trigonometric functions change across different quadrants?
         // - I learned that each quadrant changes which trig functions are positive:
             //Quadrant I: all are positive
-        1   //Quadrant II: only sine is positive
+            //Quadrant II: only sine is positive
             //Quadrant III: only tangent is positive
             //Quadrant IV: only cosine is positive
         // 3. What special considerations are needed for angles exactly on the axes?
@@ -219,6 +219,7 @@ public class TrigonometryLab {
         // - I can change the sine equation to another wave type, like square or triangle waves. I’ll also update how I check for peaks and troughs to match that wave’s shape.
     }
 }
+
 
 
 
