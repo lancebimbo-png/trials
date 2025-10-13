@@ -1,0 +1,206 @@
+package TrigonometryLab;
+
+import java.util.Scanner;
+import static java.lang.Math.*;
+
+public class TrigonometryLab {
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // --------------------- PROBLEM 1: TRIGONOMETRIC FUNCTION CALCULATOR ---------------------
+        System.out.println("Problem 1: Trigonometric Function Calculator");
+        System.out.print("Enter an angle in degrees: ");
+        double angleDeg = input.nextDouble();
+        double angleRad = toRadians(angleDeg);
+
+        System.out.println("Choose a function: ");
+        System.out.println("1. Sine");
+        System.out.println("2. Cosine");
+        System.out.println("3. Tangent");
+        System.out.println("4. All three");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("sin(" + angleDeg + ") = " + sin(angleRad));
+                break;
+            case 2:
+                System.out.println("cos(" + angleDeg + ") = " + cos(angleRad));
+                break;
+            case 3:
+                if ((angleDeg % 180) == 90) {
+                    System.out.println("Tangent is undefined at " + angleDeg + " degrees.");
+                } else {
+                    System.out.println("tan(" + angleDeg + ") = " + tan(angleRad));
+                }
+                break;
+            case 4:
+                System.out.println("sin(" + angleDeg + ") = " + sin(angleRad));
+                System.out.println("cos(" + angleDeg + ") = " + cos(angleRad));
+                if ((angleDeg % 180) == 90) {
+                    System.out.println("Tangent is undefined at " + angleDeg + " degrees.");
+                } else {
+                    System.out.println("tan(" + angleDeg + ") = " + tan(angleRad));
+                }
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                break;
+        }
+
+        // Critical Thinking Answers (Problem 1)
+        // 1. I convert angles from degrees to radians because Java’s Math functions work in radians.
+        // 2. Tangent becomes undefined when cosine equals zero, like at 90° and 270°.
+        // 3. I can add reciprocal formulas: cosecant = 1/sin(θ), secant = 1/cos(θ), cotangent = 1/tan(θ).
+
+
+        // --------------------- PROBLEM 2: ANGLE QUADRANT DETECTOR ---------------------
+        System.out.println("\nProblem 2: Angle Quadrant Detector");
+        System.out.print("Enter an angle in degrees: ");
+        double angle = input.nextDouble();
+
+        angle = angle % 360;
+        if (angle < 0) angle += 360;
+
+        switch ((int) angle) {
+            case 0, 180:
+                System.out.println("Angle is on the x-axis.");
+                break;
+            case 90, 270:
+                System.out.println("Angle is on the y-axis.");
+                break;
+            default:
+                if (angle > 0 && angle < 90)
+                    System.out.println("Quadrant I: sin +, cos +, tan +");
+                else if (angle > 90 && angle < 180)
+                    System.out.println("Quadrant II: sin +, cos -, tan -");
+                else if (angle > 180 && angle < 270)
+                    System.out.println("Quadrant III: sin -, cos -, tan +");
+                else if (angle > 270 && angle < 360)
+                    System.out.println("Quadrant IV: sin -, cos +, tan -");
+                break;
+        }
+
+        // Critical Thinking Answers (Problem 2)
+        // 1. I normalize angles between 0° and 360° so I can find the correct quadrant easily.
+        // 2. Each quadrant changes which trig function is positive:
+        //    Quadrant I: all positive
+        //    Quadrant II: only sine positive
+        //    Quadrant III: only tangent positive
+        //    Quadrant IV: only cosine positive
+        // 3. I handle 0°, 90°, 180°, and 270° separately because they lie on axes.
+
+
+        // --------------------- PROBLEM 3: RIGHT TRIANGLE SOLVER ---------------------
+        System.out.println("\nProblem 3: Right Triangle Solver");
+        System.out.println("What do you know?");
+        System.out.println("1. Two sides");
+        System.out.println("2. One side and one angle");
+        int know = input.nextInt();
+
+        double a = 0, b = 0, c = 0;
+        double A = 0, B = 0, C = 90;
+
+        switch (know) {
+            case 1:
+                System.out.print("Enter side a: ");
+                a = input.nextDouble();
+                System.out.print("Enter side b: ");
+                b = input.nextDouble();
+                c = sqrt(a * a + b * b);
+                A = toDegrees(atan(a / b));
+                B = 90 - A;
+                break;
+            case 2:
+                System.out.print("Enter side a: ");
+                a = input.nextDouble();
+                System.out.print("Enter angle A (less than 90): ");
+                A = input.nextDouble();
+                if (A >= 90) {
+                    System.out.println("Invalid angle.");
+                } else {
+                    double Arad = toRadians(A);
+                    B = 90 - A;
+                    c = a / sin(Arad);
+                    b = sqrt(c * c - a * a);
+                }
+                break;
+            default:
+                System.out.println("Invalid choice.");
+                break;
+        }
+
+        System.out.println("Sides: a=" + a + ", b=" + b + ", c=" + c);
+        System.out.println("Angles: A=" + A + ", B=" + B + ", C=" + C);
+        double area = (a * b) / 2;
+        System.out.println("Area = " + area);
+
+        // Critical Thinking Answers (Problem 3)
+        // 1. I make sure other angles are less than 90° because a right triangle has only one 90° angle.
+        // 2. I use trig formulas depending on what values I know.
+        // 3. If inputs don’t form a valid triangle, the program warns or gives impossible results.
+
+
+        // --------------------- PROBLEM 4: TRIGONOMETRIC IDENTITY VERIFIER ---------------------
+        System.out.println("\nProblem 4: Identity Verifier");
+        System.out.print("Enter an angle in degrees: ");
+        double ang = input.nextDouble();
+        double angRad = toRadians(ang);
+
+        double left1 = pow(sin(angRad), 2) + pow(cos(angRad), 2);
+        System.out.println("sin²θ + cos²θ = " + left1 + " (should be 1)");
+
+        double left2 = 1 + pow(tan(angRad), 2);
+        double right2 = 1 / pow(cos(angRad), 2);
+        System.out.println("1 + tan²θ = " + left2 + " and sec²θ = " + right2);
+
+        double left3 = sin(2 * angRad);
+        double right3 = 2 * sin(angRad) * cos(angRad);
+        System.out.println("sin(2θ) = " + left3 + " and 2sinθcosθ = " + right3);
+
+        // Critical Thinking Answers (Problem 4)
+        // 1. I use a small tolerance because computers can’t store exact decimal numbers.
+        // 2. The identity 1 + tan²θ = sec²θ is most affected by rounding near 90°.
+        // 3. I can add more formulas like reciprocal or double-angle identities.
+
+
+        // --------------------- PROBLEM 5: WAVE PROPERTIES ANALYZER ---------------------
+        System.out.println("\nProblem 5: Wave Analyzer");
+        System.out.print("Enter amplitude: ");
+        double amp = input.nextDouble();
+        System.out.print("Enter frequency: ");
+        double freq = input.nextDouble();
+        System.out.print("Enter phase shift (degrees): ");
+        double phase = input.nextDouble();
+        System.out.print("Enter time: ");
+        double t = input.nextDouble();
+
+        double phaseRad = toRadians(phase);
+        double value = amp * sin(2 * PI * freq * t + phaseRad);
+        System.out.println("Instantaneous value = " + value);
+
+        if (abs(value - amp) < 0.0001) {
+            System.out.println("At a peak");
+        } else if (abs(value + amp) < 0.0001) {
+            System.out.println("At a trough");
+        } else if (abs(value) < 0.0001) {
+            System.out.println("At zero-crossing");
+        } else {
+            System.out.println("At some other point of the wave");
+        }
+
+        double nextPeakTime = (PI / 2 - phaseRad) / (2 * PI * freq);
+        if (nextPeakTime < t) {
+            nextPeakTime += 1.0 / freq;
+        }
+        System.out.println("Next peak at time = " + nextPeakTime);
+
+        // Critical Thinking Answers (Problem 5)
+        // 1. I check if sine equals 1 or -1 to know if the wave is at a peak or trough.
+        // 2. I use T = 1 / frequency to find when the next peak happens.
+        // 3. I can modify the sine formula to work with square or triangular waves.
+
+        input.close();
+    }
+}
