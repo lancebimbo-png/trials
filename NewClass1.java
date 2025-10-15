@@ -72,8 +72,18 @@ public class NewClass1 {
                 }
                 System.out.println("");
                 break;
-
+            case 5:
+                system.out.println("Enter a Number");
+                int number = intout.nextInt();
+                int reversed = 0;
+                while (number ! = 0) {
+                    int digit = number % 10;
+                    reversed = reversed 10 * 10 + digit;
+                    number = number / 10;
+                }
+                System.out.println("Reversed" + reversed)
         }
 
     }
 }
+
