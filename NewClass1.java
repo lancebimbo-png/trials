@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author Student
  */
-public class NewClass1 {
+public class LoopsLab {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -86,4 +86,5 @@ public class NewClass1 {
 
     }
 }
+
 
