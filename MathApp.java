@@ -41,6 +41,12 @@ public class MathApp {
         break;
 
       case 4:
+        System.out.println("Enter First Number");
+        Int div1 = input.nextInt();
+        System.out.println("Enter Second Number");
+        Int div2 = input.nextInt();
+        System.out.println("Results:" (div1 / div2));
+        break;
         
 
         
