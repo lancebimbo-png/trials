@@ -32,7 +32,7 @@ public class MathApp {
         System.out.println("Results" (sub1 - sub2));
         break;
 
-      case 3;
+      case 3:
         System.out.println("Enter First Number");
         Int mul1 = input.nextInt();
         System.out.println("Enter Second Number");
@@ -45,14 +45,14 @@ public class MathApp {
         Int div1 = input.nextInt();
         System.out.println("Enter Second Number");
         Int div2 = input.nextInt();
-        if {
-        System.out.println(div2 = 0);
+        if (div2 = 0) {
         System.out.println("undefined");
-        }
-        else {
+        }else {
         System.out.println("Results:" (div1 / div2));
         }
-          break;
+        break;
+      
+      case 5:  
         
 
         
