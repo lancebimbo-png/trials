@@ -45,8 +45,14 @@ public class MathApp {
         Int div1 = input.nextInt();
         System.out.println("Enter Second Number");
         Int div2 = input.nextInt();
+        if {
+        System.out.println(div2 = 0);
+        System.out.println("undefined");
+        }
+        else {
         System.out.println("Results:" (div1 / div2));
-        break;
+        }
+          break;
         
 
         
